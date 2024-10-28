@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Series</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">TV Series</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Canal</th>
+                            <th>Temporadas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="series-table-body">
+                        <tr onclick="showDetails(1)">
+                            <td>1</td>
+                            <td>Breaking Bad</td>
+                            <td>AMC</td>
+                            <td>5</td>
+                        </tr>
+                        <tr onclick="showDetails(2)">
+                            <td>2</td>
+                            <td>Orange Is the New Black</td>
+                            <td>Netflix</td>
+                            <td>6</td>
+                        </tr>
+                        <tr onclick="showDetails(3)">
+                            <td>3</td>
+                            <td>Game of Thrones</td>
+                            <td>HBO</td>
+                            <td>7</td>
+                        </tr>
+                        <tr onclick="showDetails(4)">
+                            <td>4</td>
+                            <td>The Big Bang Theory</td>
+                            <td>CBS</td>
+                            <td>12</td>
+                        </tr>
+                        <tr onclick="showDetails(5)">
+                            <td>5</td>
+                            <td>Sherlock</td>
+                            <td>BBC</td>
+                            <td>4</td>
+                        </tr>
+                        <tr onclick="showDetails(6)">
+                            <td>6</td>
+                            <td>A Very English Scandal</td>
+                            <td>BBC</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><strong>Promedio de Temporadas:</strong></td>
+                            <td><strong>6</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <div id="details-card" class="card" style="display:none;">
+                    <img id="card-image" class="card-image" src="" alt="Series image" style="width: 500; height: 300px; object-fit: cover; display:none;">
+                    <div class="card-body">
+                        <h5 id="card-title" class="card-title"></h5>
+                        <p id="card-description" class="card-text"></p>
+                        <a id="card-link" href="#" class="btn btn-primary" style="display:none;">Ver Serie</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/index.js" type="module"></script>
+    <script>
+        const seriesData = [
+            { id: 1, name: "Breaking Bad", channel: "AMC", seasons: 5, description: "Set and filmed in Albuquerque, New Mexico, the series tells the story of Walter White, a struggling and depressed high school chemistry teacher who is diagnosed with lung cancer.", link: "https://www.amc.com/shows/breaking-bad", image: "images/Serie1.jpg" },
+            { id: 2, name: "Orange Is the New Black", channel: "Netflix", seasons: 6, description: "The series begins revolving around Piper Chapman, a woman in her thirties living in New York City who is sentenced to 15 months in Litchfield Penitentiary.", link: "https://www.netflix.com/co/title/70242311", image: "images/Serie2.jpg" },
+            { id: 3, name: "Game of Thrones", channel: "HBO", seasons: 7, description: "American fantasy drama.", link: "https://www.hbo.com/game-of-thrones", image: "images/Serie3.jpg" },
+            { id: 4, name: "The Big Bang Theory", channel: "CBS", seasons: 12, description: "Leonard and Sheldon are brilliant physicists—geniuses in the laboratory but socially challenged everywhere else...", link: "https://www.cbs.com/shows/big_bang_theory/about/", image: "images/Serie4.jpg" },
+            { id: 5, name: "Sherlock", channel: "BBC", seasons: 4, description: "Sherlock depicts consulting detective Sherlock Holmes (Benedict Cumberbatch) solving various mysteries in modern-day London.", link: "https://www.bbc.co.uk/programmes/b018ttws", image: "images/Serie5.jpg" },
+            { id: 6, name: "A Very English Scandal", channel: "BBC", seasons: 2, description: "A Very English Scandal is a fact-based three-part British television comedy-drama miniseries based on John Preston's book of the same name.", link: "https://www.bbc.co.uk/programmes/p065smy4", image: "images/Serie6.jpg" },
+        ];
+
+        function showDetails(seriesId) {
+            const series = seriesData.find(s => s.id === seriesId)
+            if (series) {
+                document.getElementById("card-title").innerText = series.name
+                document.getElementById("card-description").innerText = `Descripción: ${series.description}`
+        
+                const link = document.getElementById("card-link") 
+                link.href = series.link;
+                link.style.display = "inline";  
+                document.getElementById("card-image").src = series.image
+                document.getElementById("card-image").style.display = "block" 
+                document.getElementById("details-card").style.display = "block"
+    }
+        }
+    </script>
+</body>
+</html>
